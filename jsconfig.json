@@ -1,0 +1,16 @@
+{
+    "exclude": ["node_modules", ".env"],
+    "compilerOptions": {
+        "module": "Node16",
+        "baseUrl": "./",
+        "paths": {
+            "#Config/*": ["./src/config/*"],
+            "#Ctes/*": ["./src/ctes/*"],
+            "#Db/*": ["./src/db/*"],
+            "#PtoControl/*": ["./src/ptoControl/*"],
+            "#RandomIDs/*": ["./src/RandomIDs/*"],
+            "#Routes/*": ["./src/routes/*"],
+            "#Servidor": ["servidor.js"]
+        }
+    }
+}
