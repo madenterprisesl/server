@@ -1,4 +1,4 @@
-//-- Importamos el componente para enrrutar las páginas de MAD Shop.
+//-- Importamos el componente para enrrutar las páginas de MAD Enterprise.
 import express from 'express';
 //-- Importamos la página que hace posible el registro de los Clientes.
 import registroClientes from '#PtoControl/registroClientes.js';
@@ -13,7 +13,7 @@ import perfilClientes from '#PtoControl/perfilClientes.js';
 //-- Importamos la página que hace posible la Configuración del Perfil de las Empresas.
 import perfilEmpresas from '#PtoControl/perfilEmpresas.js';
 
-//-- Creamos las rutas de MAD Shop con método POST.
+//-- Creamos las rutas de MAD Enterprise con método POST.
 const rutasPOST = express.Router();
 
 //-- Ruta POST para registrarse como Cliente.
@@ -34,5 +34,5 @@ rutasPOST.post('/perfil-cliente', perfilClientes);
 //-- Ruta POST para Configurar el Perfil como Empresa.
 rutasPOST.post('/perfil-empresa', perfilEmpresas);
 
-//-- Exportamos las rutas POST para unificar el E-Commerce MAD Shop.
+//-- Exportamos las rutas POST para unificar el E-Commerce MAD Enterprise.
 export default rutasPOST;

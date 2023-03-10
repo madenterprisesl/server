@@ -1,5 +1,5 @@
 //-- Importamos la conexión con la base de datos poder establecer diferentes operaciones con ella.
-import madshopdb from '#Config/database.js';
+import madenterprisedb from '#Config/database.js';
 
 //-- Creamos el Punto de Control para configurar el inicio de sesión de las Empresas.
 const loginEmpresas = async (req, res) => {
@@ -7,9 +7,9 @@ const loginEmpresas = async (req, res) => {
     //-- Introducimos los campos para Iniciar Sesión como Empresa.
     const { email, password } = req.body;
     //-- Comprobamos que el email introducido existe y se encuentra en la base de datos.
-    madshopdb.getConnection( (error) => {
+    madenterprisedb.getConnection( (error) => {
         if(error) throw error;
-        madshopdb.query('SELECT * FROM empresas WHERE email = ?', email, (error, rows) => {
+        madenterprisedb.query('SELECT * FROM empresas WHERE email = ?', email, (error, rows) => {
             if(error) throw error;
             if(rows[0] == undefined) {
                 res.status(401).send('Correo Electrónico incorrecto');
@@ -17,9 +17,9 @@ const loginEmpresas = async (req, res) => {
         });
     });
     //-- Comprobamos que la contraseña introducida existe y se encuentra en la base de datos.
-    madshopdb.getConnection( (error) => {
+    madenterprisedb.getConnection( (error) => {
         if(error) throw error;
-        madshopdb.query('SELECT * FROM empresas WHERE password = ?', password, (error, rows) => {
+        madenterprisedb.query('SELECT * FROM empresas WHERE password = ?', password, (error, rows) => {
             if(error) throw error;
             if(rows[0] == undefined) {
                 res.status(401).send('Contraseña incorrecta');

@@ -1,9 +1,9 @@
 //-- Importamos la versión 2 de la Tecnología MySQL, que tiene mejores características y más rango de actuación,
-//-- para conectarnos a la base de datos de MAD Shop.
+//-- para conectarnos a la base de datos de MAD Enterprise.
 import mySQL from 'mysql2';
 
-//-- Creamos la función para registrarse como Empresa en la base de datos de MAD Shop.
-function registrarEmpresadb(madshopdb, data) {
+//-- Creamos la función para registrarse como Empresa en la base de datos de MAD Enterprise.
+function registrarEmpresadb(madenterprisedb, data) {
 
     //-- Instrucción para registrarse en la base de datos.
     let instruccionRegistrarse = 
@@ -11,22 +11,18 @@ function registrarEmpresadb(madshopdb, data) {
     //-- Configuración del formato de los datos introducidos.
     let formatoInstruccionRegistrarse = mySQL.format(instruccionRegistrarse, [data.idEmpresa, data.nombre, data.cif, data.email, data.password, data.tiposoc]);
     //-- Establecer la conexión dinámica.
-    madshopdb.getConnection(function(error, madshopdb) {
+    madenterprisedb.getConnection(function(error, madenterprisedb) {
         if(error) {
             throw error;
         }else {
             //-- Establecer la configuración de insertar datos en la base de datos.
-            madshopdb.query(formatoInstruccionRegistrarse, function(error) {
-                if(error) throw error;
-                madshopdb.release();
-            });
+            madenterprisedb.query(formatoInstruccionRegistrarse);
         }
-
     });
 }
 
-//-- Creamos la función para Actualizar los datos de la base de datos de MAD Shop.
-function actualizardb(madshopdb, data) {
+//-- Creamos la función para Actualizar los datos de la base de datos de MAD Enterprise.
+function actualizardb(madenterprisedb, data) {
 
     //-- Ctes usadas para crear emails de forma aleatoria para la base de datos.
     const radomLetras = Math.random().toString(36).substring(7);
@@ -35,29 +31,25 @@ function actualizardb(madshopdb, data) {
     let actualizarquery = "UPDATE empresas SET email = ? WHERE id = ?";
     let query = mySQL.format(actualizarquery, [newEmail, data.id]);
     //-- Establecer la conexión dinámica.
-    madshopdb.getConnection(function(error, madshopdb) {
+    madenterprisedb.getConnection(function(error, madenterprisedb) {
         if(error) throw error;
         //-- Establecer la configuración de actualizar los datos de la base de datos.
-        madshopdb.query(query, function(error) {
-            if(error) throw error;
-        });
+        madenterprisedb.query(query);
     });
 }
 
-//-- Creamos la función para Borrar los datos de la base de datos de MAD Shop.
-function borrardb(madshopdb, data) {
+//-- Creamos la función para Borrar los datos de la base de datos de MAD Enterprise.
+function darseBajaEmpresadb(madenterprisedb, data) {
     //-- Variables usadas para borrar los datos de la base de datos.
-    let borrarquery = "DELETE FROM empresas WHERE id = ?";
-    let query = mySQL.format(borrarquery, [data.id]);
+    let instruccionDarseBajaEmpresa = "DELETE FROM empresas WHERE email = ?";
+    let formatoinstruccionDarseBajaEmpresa = mySQL.format(instruccionDarseBajaEmpresa, [data.email]);
     //-- Establecer la conexión dinámica.
-    madshopdb.getConnection(function(error, madshopdb) {
+    madenterprisedb.getConnection(function(error, madenterprisedb) {
         if(error) throw error;
         //-- Establecer la configuración de borrar los datos de la base de datos.
-        madshopdb.query(query, function(error) {
-            if(error) throw error;
-        });
+        madenterprisedb.query(formatoinstruccionDarseBajaEmpresa);
     });
 }
 
 //-- Exportamos las funciones.
-export {registrarEmpresadb, actualizardb, borrardb};
+export {registrarEmpresadb, actualizardb, darseBajaEmpresadb};

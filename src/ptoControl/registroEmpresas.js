@@ -1,7 +1,7 @@
 //-- Importamos el componente para cifrar las contraseñas.
 import {hash} from 'bcrypt';
 //-- Importamos la conexión con la base de datos poder establecer diferentes operaciones con ella.
-import madshopdb from '#Config/database.js';
+import madenterprisedb from '#Config/database.js';
 //-- Importamos las funciones de operaciones de las Empresas para interactuar con la base de datos.
 import {registrarEmpresadb} from '../db/operacionesEmpresasdb.js';
 //-- Importamos la función que genera el ID aleatoriamente.
@@ -15,12 +15,12 @@ const registroEmpresas = async (req, res) => {
     //-- Introducimos los campos para Registrarse como Cliente.
     const { nombre, cif, email, password, confirmPassword, tiposoc } = req.body;
     //-- Consulta del email introducido por si ya existía en la base de datos.
-    madshopdb.getConnection( (error) => {
+    madenterprisedb.getConnection( (error) => {
         if(error) throw error;
-        madshopdb.query('SELECT * FROM empresas WHERE email = ?', email, (error, rows) => {
+        madenterprisedb.query('SELECT * FROM empresas WHERE email = ?', email, (error, rows) => {
             if(error) throw error;
             if(rows[0] !== undefined) {
-                res.status(409).send('Lo siento, el Correo Electrónico introducido\nya está en uso en MAD Shop');
+                res.status(409).send('Lo siento, el Correo Electrónico introducido\nya está en uso en MAD Enterprise');
             }
         });
     });
@@ -33,10 +33,10 @@ const registroEmpresas = async (req, res) => {
     //-- Registramos el Cliente en la base de datos de MAD Shop.
     registrarEmpresadb
     (
-        madshopdb, 
+        madenterprisedb, 
         {idEmpresa: idEmpresa, nombre: nombre, cif: cif, email: email, password: passwordCifrada, tiposoc: tiposoc}
     );
-    return res.status(201).send('Empresa registrada con éxito.\n¡Bienvenido a MAD Shop!');
+    return res.status(201).send('Empresa registrada con éxito.\n¡Bienvenido a MAD Enterprise!');
 
 };
 

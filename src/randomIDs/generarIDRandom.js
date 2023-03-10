@@ -1,5 +1,5 @@
 //-- Creamos la función para generar un ID aleatoriamente 
-//-- para el Cliente o para la Empresa que se registre en MAD Shop.
+//-- para el Cliente o para la Empresa que se registre en MAD Enterprise.
 function generarIDrandom() {
     
     //-- Variable que almacena el ID aleatorio.

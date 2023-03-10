@@ -1,5 +1,5 @@
 //-- Importamos el componente que comprueba que los campos introducidos por el miembro de
-//-- MAD Shop se han introducido correctamente.
+//-- MAD Enterprise se han introducido correctamente.
 import {check} from 'express-validator';
 
 //-- Creamos la función de validación para cuando los Clientes se registren.

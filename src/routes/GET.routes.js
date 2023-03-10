@@ -1,7 +1,7 @@
-//-- Importamos el componente para enrrutar las páginas de MAD Shop.
+//-- Importamos el componente para enrrutar las páginas de MAD Enterprise.
 import express from 'express';
 
-//-- Creamos las rutas de MAD Shop con método GET.
+//-- Creamos las rutas de MAD Enterprise con método GET.
 const rutasGET = express.Router();
 
 //-- Ruta a Inicio.
@@ -38,5 +38,5 @@ rutasGET.get('/registrarse', (req,res) => {
     res.status(200).send('Estás en la sección de Registrarse como Cliente o como Empresa');
 })
 
-//-- Exportamos las rutas GET para unificar el E-Commerce MAD Shop.
+//-- Exportamos las rutas GET para unificar el E-Commerce MAD Enterprise.
 export default rutasGET;
