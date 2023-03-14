@@ -10,7 +10,7 @@
             "#PtoControl/*": ["./src/ptoControl/*"],
             "#RandomIDs/*": ["./src/RandomIDs/*"],
             "#Routes/*": ["./src/routes/*"],
-            "#Servidor": ["servidor.js"]
+            "#Servidor": ["./src/index.js"]
         }
     }
 }
